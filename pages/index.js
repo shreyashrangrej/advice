@@ -28,7 +28,7 @@ export default function Home(props) {
             </Card.Header>
             <Card.Divider />
             <Card.Body css={{ py: "$10" }}>
-              <Text>
+              <Text size={20}>
                 {data.slip.advice}
               </Text>
             </Card.Body>
@@ -40,8 +40,9 @@ export default function Home(props) {
                   onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
                   iconOn={<MoonIcon filled />}
                   iconOff={<SunIcon filled />}
+                  size='lg'
                 />
-                <Spacer x={3} />
+                <Spacer/>
                 <Button onClick={refresh} shadow color="gradient" auto>
                   Seek Advice 🤲
                 </Button>
