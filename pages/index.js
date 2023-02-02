@@ -2,6 +2,8 @@ import { useState } from 'react'
 import axios from 'axios';
 import { Button, Switch, useTheme, Card, Text, Grid, Row, Spacer } from '@nextui-org/react';
 import { useTheme as useNextTheme } from 'next-themes'
+import { SunIcon } from '@/public/icon/sunicon';
+import { MoonIcon } from '@/public/icon/moonicon';
 
 async function fetchData() {
   const response = await axios.get("https://api.adviceslip.com/advice");
@@ -17,9 +19,9 @@ export default function Home(props) {
   const { setTheme } = useNextTheme();
   const { isDark, type } = useTheme();
   return (
-    <div>
-      <Grid.Container gap={2}>
-        <Grid sm={12} md={5}>
+    <div className='container'>
+      <Grid.Container gap={2} justify='center' alignItems='center' alignContent='center'>
+        <Grid alignItems='center' alignContent='center'>
           <Card css={{ mw: "330px" }}>
             <Card.Header>
               <Text b h3>Advices</Text>
@@ -36,8 +38,10 @@ export default function Home(props) {
                 <Switch shadow
                   checked={isDark}
                   onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
+                  iconOn={<MoonIcon filled />}
+                  iconOff={<SunIcon filled />}
                 />
-                <Spacer x={2} />
+                <Spacer x={3} />
                 <Button onClick={refresh} shadow color="gradient" auto>
                   Seek Advice 🤲
                 </Button>
@@ -46,6 +50,16 @@ export default function Home(props) {
           </Card>
         </Grid>
       </Grid.Container>
+      <style jsx>
+        {`
+        .container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+      `}
+      </style>
     </div>
   )
 }
